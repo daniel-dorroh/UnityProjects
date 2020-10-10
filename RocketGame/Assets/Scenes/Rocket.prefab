@@ -637,7 +637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rocket: {fileID: 2769018924967410731}
   Thrust: 14
-  ManeuverAngle: 20
+  ManeuverAngle: 35
 --- !u!1 &2769018924975499857
 GameObject:
   m_ObjectHideFlags: 0
