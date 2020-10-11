@@ -1,18 +1,29 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class RocketMotion : MonoBehaviour
 {
-    public float ThrustForce = 20.0f;
-    public float ManeuverAngle = 50.0f;
-    public Rigidbody Rocket;
-    public AudioSource RocketPulse;
-    public AudioSource ManeuverBlast;
+    [SerializeField]
+    private float ThrustForce = 20.0f;
+    [SerializeField]
+    private float ManeuverAngle = 50.0f;
+    [SerializeField]
+    private Rigidbody Rocket;
+    [SerializeField]
+    private AudioSource RocketPulse;
+    [SerializeField]
+    private AudioSource ManeuverBlast;
+
+
+    public int Health = 3;
+
     private bool _hasManeuveredLeft = false;
     private bool _hasManeuveredRight = false;
+    private bool _isDestroyed = false;
 
     public void Start()
     {
-        if (Rocket == default(Rigidbody))
+        if (Rocket == null)
         {
             Rocket = GetComponent<Rigidbody>();
         }
@@ -26,10 +37,45 @@ public class RocketMotion : MonoBehaviour
         }
     }
 
-    public void Update()
+    internal void Update()
     {
+        if (_isDestroyed)
+        {
+            return;
+        }
+        
         Thrust();
         Maneuver();
+    }
+
+    internal void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly":
+                break;
+            default:
+                Damage();
+                break;
+        }
+    }
+
+    private void Damage()
+    {
+        if (Health > 0)
+        {
+            Health -= 1;
+        }
+        if (Health <= 0)
+        {
+            Destroy();
+        }
+    }
+
+    private void Destroy()
+    {
+        Rocket.velocity.Scale(Vector3.up);
+        _isDestroyed = true;
     }
 
     private void Thrust()
@@ -55,15 +101,19 @@ public class RocketMotion : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
+            Rocket.freezeRotation = true;
             _hasManeuveredRight = false;
             transform.Rotate(Vector3.forward, ManeuverAngle * Time.deltaTime);
             _hasManeuveredLeft = PlayManeuverSound(_hasManeuveredLeft);
+            Rocket.freezeRotation = false;
         }
         else if (Input.GetKey(KeyCode.D))
         {
+            Rocket.freezeRotation = true;
             _hasManeuveredLeft = false;
             transform.Rotate(Vector3.back, ManeuverAngle * Time.deltaTime);
             _hasManeuveredRight = PlayManeuverSound(_hasManeuveredRight);
+            Rocket.freezeRotation = false;
         }
         else
         {
