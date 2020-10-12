@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162f1b4e3e8894b47ab905f53ade3dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThrustForce: 16
+  ThrustForce: 15
   ManeuverAngle: 50
   Rocket: {fileID: 6599786235835188437}
   RocketPulse: {fileID: 7637527951468149220}
