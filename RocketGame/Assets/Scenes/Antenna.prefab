@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2439627487150122143}
   - component: {fileID: 2439627487150122128}
   - component: {fileID: 2439627487150122129}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Antenna
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,6 +179,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manifold (0)
       objectReference: {fileID: 0}
+    - target: {fileID: 7443898845696314207, guid: 2bce2d337b002014282a37dedc2b1dbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bce2d337b002014282a37dedc2b1dbf, type: 3}
 --- !u!4 &5768553182174990227 stripped
@@ -269,6 +274,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Manifold (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7443898845696314207, guid: 2bce2d337b002014282a37dedc2b1dbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bce2d337b002014282a37dedc2b1dbf, type: 3}
 --- !u!4 &5768553182173217337 stripped
@@ -358,6 +368,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Manifold (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7443898845696314207, guid: 2bce2d337b002014282a37dedc2b1dbf,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bce2d337b002014282a37dedc2b1dbf, type: 3}
