@@ -76,6 +76,8 @@ public class RocketMotion : MonoBehaviour
     {
         Rocket.velocity.Scale(Vector3.up);
         _isDestroyed = true;
+        RocketPulse.Stop();
+        ManeuverBlast.Stop();
     }
 
     private void Thrust()
