@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Models
@@ -21,9 +22,11 @@ namespace Models
             _parent2 = parent2;
         }
 
+        protected virtual Func<string, string> Mutate { get; } = null;
+
         public Seed<T> Create()
         {
-            var genes = _parent1.Combine(_parent2);
+            var genes = _parent1.Combine(_parent2, Mutate);
             return new Seed<T>(genes);
         }
     }

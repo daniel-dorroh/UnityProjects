@@ -18,7 +18,7 @@ namespace GardenSim.Test
         public void Random_CreatesSelfConsistentGenes()
         {
             var genes = Genes.Random();
-            genes.Material.Should().Be(Convert.ToInt32(genes.Sequence, 2));
+            genes.Material.Should().Be(Convert.ToUInt32(genes.Sequence, 2));
         }
 
         [Test]
@@ -34,6 +34,29 @@ namespace GardenSim.Test
                                    || gene == parent2.Sequence.Substring(i, 2);
                 isParentGene.Should().BeTrue();
             }
+        }
+
+        [Test]
+        public void ExpressAsBool_OneGene_ReturnsTrue()
+        {
+            var genes = new Genes(1);
+            genes.ExpressAsBool(31).Should().BeTrue();
+        }
+
+        [Test]
+        public void ExpressAsBool_ZeroGene_ReturnsFalse()
+        {
+            var genes = new Genes(0);
+            genes.ExpressAsBool(31).Should().BeFalse();
+        }
+
+        [Test]
+        public void ExpressAsRgba_ReturnsColor()
+        {
+            var genes = new Genes(uint.MaxValue);
+            var color1 = genes.ExpressAsRgba(0);
+            var color2 = genes.ExpressAsRgba(7);
+            color1.Should().BeEquivalentTo(color2);
         }
     }
 }
