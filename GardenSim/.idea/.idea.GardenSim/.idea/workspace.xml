@@ -10,6 +10,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EA9EF0E4-0251-4E9F-9025-6C59976645E2/c4/ecc92e98/Color.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/99258562-0D64-4271-98DD-F3A0E1467733/ad/601c9f75/Random.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/EA9EF0E4-0251-4E9F-9025-6C59976645E2/c1/7087dc81/Random.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -19,8 +20,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Models/Seed.cs" />
         <option value="$PROJECT_DIR$/GardenSim.Test/Tests.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Models/SeedFactory.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Models/Genes.cs" />
         <option value="$PROJECT_DIR$/GardenSim.Test/GenesTest.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Models/Genes.cs" />
       </list>
     </option>
   </component>
@@ -51,7 +52,7 @@
       <workItem from="1603690953285" duration="1922000" />
       <workItem from="1603750068984" duration="6676000" />
       <workItem from="1603823589143" duration="5434000" />
-      <workItem from="1603844086553" duration="1549000" />
+      <workItem from="1603844086553" duration="3606000" />
     </task>
     <servers />
   </component>
@@ -147,24 +148,5 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="503" y="231" width="672" height="678" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1603777340653" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/GardenSim.Test/GenesTest.cs</url>
-          <line>56</line>
-          <properties documentPath="$PROJECT_DIR$/GardenSim.Test/GenesTest.cs" initialLine="56">
-            <startOffsets>
-              <option value="1607" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1643" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

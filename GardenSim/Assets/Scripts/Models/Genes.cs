@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using Random = System.Random;
+using RandomGenerator = UnityEngine.Random;
 
 namespace Models
 {
@@ -10,8 +10,6 @@ namespace Models
     {
         private uint _material;
         private string _sequence;
-
-        private static readonly Random RandomGenerator = new Random();
 
         public Genes(uint material)
         {
@@ -24,7 +22,7 @@ namespace Models
 
         public static Genes Random()
         {
-            var material = (uint)Math.Floor(RandomGenerator.NextDouble() * uint.MaxValue);
+            var material = (uint)Math.Floor(RandomGenerator.value * uint.MaxValue);
             return new Genes(material);
         }
 
@@ -37,7 +35,7 @@ namespace Models
             {
                 string gene;
 
-                if (RandomGenerator.NextDouble() > 0.5)
+                if (RandomGenerator.value > 0.5)
                 {
                     gene = _sequence.Substring(i, 2);
                 }
