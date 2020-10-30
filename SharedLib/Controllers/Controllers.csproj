@@ -49,6 +49,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="FirstPersonMouseLook.cs" />
+        <Compile Include="FirstPersonMovement.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Reference Include="Unity.Timeline.Editor">
             <HintPath>/Users/daniel/Projects/UnityProjects/NewInputSystem/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
