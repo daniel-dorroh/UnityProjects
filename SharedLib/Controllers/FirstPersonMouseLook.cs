@@ -27,6 +27,8 @@ namespace Controllers
         [Tooltip("Minimum input magnitude required to cause the controller to move the camera.")]
         [SerializeField] private float minimumInputMagnitude = 0.01f;
 
+        [SerializeField] private bool isCursorLocked = true;
+
         private InputAction _look;
         private float _verticalAngle;
         private float _horizontalAngle;
@@ -41,13 +43,29 @@ namespace Controllers
 
         private void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            if (isCursorLocked)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
 
         private void Update()
         {
+            UpdateSettings();
             var deltas = _look.ReadValue<Vector2>();
             Look(deltas);
+        }
+
+        private void UpdateSettings()
+        {
+            if (isCursorLocked && Cursor.lockState != CursorLockMode.Locked)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else if (!isCursorLocked && Cursor.lockState == CursorLockMode.Locked)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
 
         private void Look(Vector2 deltas)
