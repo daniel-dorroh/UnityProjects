@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\MaterialExtensions.cs" />
      <Compile Include="Assets\ProceduralCreature.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/daniel/Projects/UnityProjects/GardenSim/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
