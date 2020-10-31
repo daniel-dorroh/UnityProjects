@@ -32,9 +32,9 @@ public class Creature
     {
         _seed = (uint)Mathf.Floor(Random.value * uint.MaxValue);
         _sequence = Convert.ToString(_seed, 2);
-        _scale = ReadAsNormalizedFloat(13);
+        _scale = Mathf.Clamp(ReadAsNormalizedFloat(13), 0.1f, 1.0f);
         _bodyShape = ReadAsEnum<BodyShape>(22);
-        _isFlying = true;// ReadAsBool(30);
+        _isFlying = ReadAsBool(30);
         _mass = Mathf.Clamp(ReadAsNormalizedFloat(5) * 2.0f * _scale, MinimumMass, 10.0f);
         if (_isFlying)
         {
@@ -55,7 +55,7 @@ public class Creature
         _root.transform.position = position;
         _rigidBody = body.AddComponent<Rigidbody>();
         _rigidBody.mass = _mass;
-        _rigidBody.drag = ReadAsNormalizedFloat(6) * 1.5f + 1.5f;
+        //_rigidBody.drag = ReadAsNormalizedFloat(6) * 1.5f + 1.5f;
 
         Renderer bodyRenderer = body.GetComponent<Renderer>();
         var material = new Material(Shader.Find("Standard"));
@@ -80,6 +80,21 @@ public class Creature
         }
     }
 
+    public Vector3 Velocity
+    {
+        get
+        {
+            try
+            {
+                return _rigidBody.velocity;
+            }
+            catch (MissingReferenceException e)
+            {
+                return Vector3.zero;
+            }
+        }
+    }
+
     public GameObject Root => _root;
 
     public void Move()
@@ -94,7 +109,10 @@ public class Creature
             _lastMove = Random.insideUnitSphere;
         }
 
-        var current = _lastMove + Vector3.one * (Random.value - 0.5f);
+        var current = new Vector3(
+                          Random.Range(_lastMove.x - 8.0f, _lastMove.x + 8.0f),
+                          Random.Range(_lastMove.y - 8.0f, _lastMove.y + 8.0f),
+                          Random.Range(_lastMove.z - 8.0f, _lastMove.z + 8.0f));
         current = current.normalized;
 
         if (!_isFlying)
@@ -105,6 +123,17 @@ public class Creature
         _rigidBody.AddForce(current * _speed);
 
         _lastMove = current;
+    }
+
+    public void SetVelocity(float velocity)
+    {
+        try
+        {
+            _rigidBody.velocity = _rigidBody.velocity.normalized * velocity;
+        }
+        catch (Exception e)
+        {
+        }
     }
 
     private GameObject RenderBody(BodyShape bodyShape)
@@ -188,7 +217,9 @@ public enum BodyShape
 public class ProceduralCreature : MonoBehaviour
 {
     public readonly List<Creature> Creatures = new List<Creature>();
-    // Start is called before the first frame update
+
+    [SerializeField] private float MaximumVelocity = 15.0f;
+
     void Start()
     {
         for (var i = 0; i < 100; i++)
@@ -197,7 +228,6 @@ public class ProceduralCreature : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         var delete = new Queue<Creature>();
@@ -208,13 +238,25 @@ public class ProceduralCreature : MonoBehaviour
                 delete.Enqueue(creature);
                 continue;
             }
-            creature.Move();
         }
         while (delete.Count > 0)
         {
             var deleted = delete.Dequeue();
             Creatures.Remove(deleted);
             Destroy(deleted.Root);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        foreach (var creature in Creatures)
+        {
+            creature.Move();
+            
+            if (creature.Velocity.magnitude > MaximumVelocity)
+            {
+                creature.SetVelocity(MaximumVelocity);
+            }
         }
     }
 }
